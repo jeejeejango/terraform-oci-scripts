@@ -1,0 +1,1 @@
+# Terraform script for Virtual Cloud Network (VCN) configuration for Oracle Container Engine (OKE)
