@@ -41,3 +41,7 @@
 #node_pool_node_image_name = "Oracle-Linux-7.5"
 #node_pool_node_shape = "VM.Standard1.1"
 #node_pool_quantity_per_subnet = 1
+
+#cluster_kube_config_expiration = 2592000
+#cluster_kube_config_token_version = "1.0.0"
+#cluster_kube_config_filename = "config"

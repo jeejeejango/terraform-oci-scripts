@@ -85,3 +85,15 @@ variable "node_pool_quantity_per_subnet" {
 }
 
 variable "node_pool_ssh_public_key" {}
+
+variable "cluster_kube_config_expiration" {
+  default = 2592000
+}
+
+variable "cluster_kube_config_token_version" {
+  default = "1.0.0"
+}
+
+variable "cluster_kube_config_filename" {
+  default = "config"
+}
