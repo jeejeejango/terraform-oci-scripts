@@ -15,6 +15,13 @@
 ## to override default settings.
 ######################terr#########################################
 
+#vcn_name="vcn-oke"
+#subnet_workers_ad1_name = "workers-1"
+#subnet_workers_ad2_name="workers-2"
+#subnet_workers_ad3_name="workers-3"
+#subnet_lb_ad1_name="loadbalancers-1"
+#subnet_lb_ad2_name="loadbalancers-2"
+
 #node_pool_ssh_public_key = ""
 
 #cluster_kubernetes_version = "v1.11.1"
@@ -33,4 +40,4 @@
 #node_pool_name = "oke_pool"
 #node_pool_node_image_name = "Oracle-Linux-7.5"
 #node_pool_node_shape = "VM.Standard1.1"
-#node_pool_quantity_per_subnet = 1node_pool_node_shape = 1
+#node_pool_quantity_per_subnet = 1

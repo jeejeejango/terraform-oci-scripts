@@ -30,10 +30,10 @@
 
 
 ## Subnet Loadbalancers (lb)
-#subnet_lbrs_ad1_name="loadbalancers-1"
-#subnet_lbrs_ad2_name="loadbalancers-2"
-#cidr_subnet_lbrs_ad1="10.0.20.0/24"
-#cidr_subnet_lbrs_ad2="10.0.21.0/24"
+#subnet_lb_ad1_name="loadbalancers-1"
+#subnet_lb_ad2_name="loadbalancers-2"
+#cidr_subnet_lb_ad1="10.0.20.0/24"
+#cidr_subnet_lb_ad2="10.0.21.0/24"
 
 
 ## Internet Gateway
@@ -44,7 +44,7 @@
 
 ## Security Lists
 # sl_worker_name="workers"
-# sl_lbr_name="loaderbalancers"
+# sl_lb_name="loaderbalancers"
 
 
 
