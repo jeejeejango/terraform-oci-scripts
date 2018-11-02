@@ -8,6 +8,9 @@ quickly provision the OKE, then you can use this script.
 2. Download or clone the script 
 3. Prepare the OKE VCN, or use the Terraform script [here](https://github.com/jeejeejango/terraform-oci-scripts/tree/master/oke-vcn)
 
+You will also need to check and perform the OKE
+[pre-requisite](https://docs.cloud.oracle.com/iaas/Content/ContEng/Concepts/contengprerequisites.htm).
+
 ## Quick Start
 After downloading the script, you will need update the configuration as shown below.
 
