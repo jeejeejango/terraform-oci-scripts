@@ -4,7 +4,7 @@ OKE web console to create or update the cluster and node pool. If you need to
 quickly provision the OKE, then you can use this script.
 
 ## Setup
-1. Please refer to the Terraform setup [here](../README.md)
+1. Please refer to the Terraform setup [here](../)
 2. Download or clone the script 
 
 ## Quick Start
