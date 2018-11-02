@@ -5,7 +5,7 @@ OKE web console is now able to create a default OKE's VCN. If you need to custom
 the VCN, then you can use this script.
 
 ## Setup
-1. Please refer to the Terraform setup [here](../)
+1. Please refer to the Terraform setup [here](https://github.com/jeejeejango/terraform-oci-scripts)
 2. Download or clone the script 
 
 ## Quick Start
