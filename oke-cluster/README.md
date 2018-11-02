@@ -6,6 +6,7 @@ quickly provision the OKE, then you can use this script.
 ## Setup
 1. Please refer to the Terraform setup [here](https://github.com/jeejeejango/terraform-oci-scripts)
 2. Download or clone the script 
+3. Prepare the OKE VCN, or use the Terraform script [here](https://github.com/jeejeejango/terraform-oci-scripts/tree/master/oke-vcn)
 
 ## Quick Start
 After downloading the script, you will need update the configuration as shown below.
