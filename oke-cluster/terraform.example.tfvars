@@ -30,7 +30,7 @@
 #availability_domain = "3"
 
 #cluster_options_add_ons_is_kubernetes_dashboard_enabled = true
-#cluster_options_add_ons_is_tiller_enabled = true
+#cluster_options_add_ons_is_tiller_enabled = false
 #cluster_options_kubernetes_network_config_pods_cidr = "10.1.0.0/16"
 #cluster_options_kubernetes_network_config_services_cidr = "10.2.0.0/16"
 

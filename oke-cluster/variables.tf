@@ -45,7 +45,7 @@ variable "cluster_options_add_ons_is_kubernetes_dashboard_enabled" {
 }
 
 variable "cluster_options_add_ons_is_tiller_enabled" {
-  default = true
+  default = false
 }
 
 variable "cluster_options_kubernetes_network_config_pods_cidr" {
