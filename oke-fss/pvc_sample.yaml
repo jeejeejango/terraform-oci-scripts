@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nginx-fss-volume
+spec:
+  storageClassName: oci-fss
+  # The following selector controls which AD the file system is provisioned in.
+  selector:
+    matchLabels:
+      failure-domain.beta.kubernetes.io/zone: AD-1
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi

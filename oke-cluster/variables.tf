@@ -29,7 +29,7 @@ variable "subnet_lb_ad2_name" {
 ## Variable definition - OKE
 
 variable "cluster_kubernetes_version" {
-  default = "v1.11.1"
+  default = "v1.11.5"
 }
 
 variable "cluster_name" {
@@ -49,11 +49,11 @@ variable "cluster_options_add_ons_is_tiller_enabled" {
 }
 
 variable "cluster_options_kubernetes_network_config_pods_cidr" {
-  default = "10.1.0.0/16"
+  default = "10.244.0.0/16"
 }
 
 variable "cluster_options_kubernetes_network_config_services_cidr" {
-  default = "10.2.0.0/16"
+  default = "10.96.0.0/16"
 }
 
 variable "node_pool_initial_node_labels_key" {
@@ -65,7 +65,7 @@ variable "node_pool_initial_node_labels_value" {
 }
 
 variable "node_pool_kubernetes_version" {
-  default = "v1.11.1"
+  default = "v1.11.5"
 }
 
 variable "node_pool_name" {
