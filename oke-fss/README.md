@@ -21,12 +21,12 @@ kubectl create -f https://raw.githubusercontent.com/oracle/oci-cloud-controller-
 ```
 
 ## Create FSS mount
-Create new FSS mount for the cluster. Replace the compartment-id and subnet-id with the one in your cloud account
+Create new FSS mount for the cluster. Replaced the availability-domain, compartment-id and subnet-id with the one in your cloud account
 
 ```bash
-oci fs mount-target create --availability-domain=mNVh:PHX-AD-1 \
+oci fs mount-target create --availability-domain=xxx:XXX-AD-1 \
 --compartment-id=ocid1.compartment.oc1..aaaaaaaaoaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
---subnet-id=ocid1.subnet.oc1.phx.aaaaaaaa3aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa --profile AAAPHX
+--subnet-id=ocid1.subnet.oc1.phx.aaaaaaaa3aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ```
 
 If the FSS is successfully create, json output of the mount is shown like the example:

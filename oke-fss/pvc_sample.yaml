@@ -7,7 +7,7 @@ spec:
   # The following selector controls which AD the file system is provisioned in.
   selector:
     matchLabels:
-      failure-domain.beta.kubernetes.io/zone: AD-1
+      failure-domain.beta.kubernetes.io/zone: "US-ASHBURN-AD-1"
   accessModes:
     - ReadWriteMany
   resources:
