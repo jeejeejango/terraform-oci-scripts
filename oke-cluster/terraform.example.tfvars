@@ -24,7 +24,7 @@
 
 #node_pool_ssh_public_key = ""
 
-#cluster_kubernetes_version = "v1.11.1"
+#cluster_kubernetes_version = "v1.11.5"
 #cluster_name = "oke_cluster"
 
 #availability_domain = "3"
@@ -36,7 +36,7 @@
 
 #node_pool_initial_node_labels_key = "key"
 #node_pool_initial_node_labels_value = "value"
-#node_pool_kubernetes_version = "v1.11.1"
+#node_pool_kubernetes_version = "v1.11.5"
 #node_pool_name = "oke_pool"
 #node_pool_node_image_name = "Oracle-Linux-7.5"
 #node_pool_node_shape = "VM.Standard1.1"
