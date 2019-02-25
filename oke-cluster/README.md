@@ -113,6 +113,26 @@ parameter:
 terraform plan -var-file=<sample_filename>.tfvars
 ```
 
+### Access Control for Kubernetes
+After creating the Kubernetes cluster, you will need to grant a user the RBAC cluster-admin clusterrole. Refer to 
+the documentation [here](https://docs.cloud.oracle.com/iaas/Content/ContEng/Concepts/contengaboutaccesscontrol.htm)
+
+```bash
+kubectl create clusterrolebinding <my-cluster-admin-binding> --clusterrole=cluster-admin --user=<user_OCID>
+
+```
+
+For example:
+```bash
+kubectl create clusterrolebinding oke-cluster-admin --clusterrole=cluster-admin --user=ocid1.user.oc1..aaaaa...zutq
+
+```
+
+To validate if the clusterrolebinding has been added:
+```bash
+kubectl get clusterrolebinding
+```
+
 ### Deleting the OKE
 You can delete the provisioned OKE using:
 ```bash
