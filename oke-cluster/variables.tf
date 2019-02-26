@@ -7,22 +7,22 @@ variable "vcn_name" {
 
 # Subnet workers
 variable "subnet_workers_ad1_name" {
-  default="workers-1"
+  default="worker-1"
 }
 variable "subnet_workers_ad2_name" {
-  default="workers-2"
+  default="worker-2"
 }
 variable "subnet_workers_ad3_name" {
-  default="workers-3"
+  default="worker-3"
 }
 
 # Subnet Loadbalancers (lbrs)
 variable "subnet_lb_ad1_name" {
-  default="loadbalancers-1"
+  default="loadbalancer-1"
 }
 
 variable "subnet_lb_ad2_name" {
-  default="loadbalancers-2"
+  default="loadbalancer-2"
 }
 
 

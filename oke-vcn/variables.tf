@@ -40,24 +40,43 @@ variable "rt_display_name" {
   default = "routetable-oke"
 }
 
+# DHCP options
+variable "dhcp_options_display_name" {
+  default = "dhcp-options-oke"
+}
+
 # Subnet workers
 variable "subnet_workers_ad1_name" {
-  default = "workers-1"
+  default = "worker-1"
 }
 variable "subnet_workers_ad2_name" {
-  default = "workers-2"
+  default = "worker-2"
 }
 variable "subnet_workers_ad3_name" {
-  default = "workers-3"
+  default = "worker-3"
+}
+variable "subnet_workers_ad1_dns" {
+  default = "worker1"
+}
+variable "subnet_workers_ad2_dns" {
+  default = "worker2"
+}
+variable "subnet_workers_ad3_dns" {
+  default = "worker3"
 }
 
 # Subnet Loadbalancers (lbrs)
 variable "subnet_lb_ad1_name" {
-  default = "loadbalancers-1"
+  default = "loadbalancer-1"
 }
-
 variable "subnet_lb_ad2_name" {
-  default = "loadbalancers-2"
+  default = "loadbalancer-2"
+}
+variable "subnet_lb_ad1_dns" {
+  default = "loadbalancer1"
+}
+variable "subnet_lb_ad2_dns" {
+  default = "loadbalancer2"
 }
 
 # Security List names

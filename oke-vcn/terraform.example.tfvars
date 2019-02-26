@@ -21,17 +21,22 @@
 #vcn_dns_label="oke"
 
 ## Subnet workers
-#subnet_workers_ad1_name="workers-1"
-#subnet_workers_ad2_name="workers-2"
-#subnet_workers_ad3_name="workers-3"
+#subnet_workers_ad1_name="worker-1"
+#subnet_workers_ad2_name="worker-2"
+#subnet_workers_ad3_name="worker-3"
+#subnet_workers_ad1_dns="worker1"
+#subnet_workers_ad2_dns="worker2"
+#subnet_workers_ad3_dns="worker3"
 #cidr_subnet_workers_ad1="10.0.10.0/24"
 #cidr_subnet_workers_ad2="10.0.11.0/24"
 #cidr_subnet_workers_ad3="10.0.12.0/24"
 
 
 ## Subnet Loadbalancers (lb)
-#subnet_lb_ad1_name="loadbalancers-1"
-#subnet_lb_ad2_name="loadbalancers-2"
+#subnet_lb_ad1_name="loadbalancer-1"
+#subnet_lb_ad2_name="loadbalancer-2"
+#subnet_lb_ad1_dns="loadbalancer1"
+#subnet_lb_ad2_dns="loadbalancer2"
 #cidr_subnet_lb_ad1="10.0.20.0/24"
 #cidr_subnet_lb_ad2="10.0.21.0/24"
 
@@ -41,6 +46,9 @@
 
 ## Route table
 #rt_display_name="routetable-oke"
+
+## DHCP Options
+#dhcp_options_display_name="dhcp-options-oke"
 
 ## Security Lists
 # sl_worker_name="workers"

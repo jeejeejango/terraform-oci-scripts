@@ -16,11 +16,11 @@
 ######################terr#########################################
 
 #vcn_name="vcn-oke"
-#subnet_workers_ad1_name = "workers-1"
-#subnet_workers_ad2_name="workers-2"
-#subnet_workers_ad3_name="workers-3"
-#subnet_lb_ad1_name="loadbalancers-1"
-#subnet_lb_ad2_name="loadbalancers-2"
+#subnet_workers_ad1_name = "worker-1"
+#subnet_workers_ad2_name="worker-2"
+#subnet_workers_ad3_name="worker-3"
+#subnet_lb_ad1_name="loadbalancer-1"
+#subnet_lb_ad2_name="loadbalancer-2"
 
 #node_pool_ssh_public_key = ""
 
