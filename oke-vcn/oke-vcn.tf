@@ -23,13 +23,12 @@ resource "oci_core_internet_gateway" "oke_gateway" {
   vcn_id = "${oci_core_vcn.oke_vcn.id}"
 }
 
-resource "oci_core_route_table" "oke_routetable" {
-  compartment_id = "${var.compartment_ocid}"
-  vcn_id = "${oci_core_vcn.oke_vcn.id}"
-  display_name = "${var.rt_display_name}"
+resource "oci_core_default_route_table" "oke_routetable" {
+  manage_default_resource_id = "${oci_core_vcn.oke_vcn.default_route_table_id}"
+  display_name               = "${var.rt_display_name}"
 
   route_rules {
-    destination = "0.0.0.0/0"
+    destination       = "0.0.0.0/0"
     destination_type  = "CIDR_BLOCK"
     network_entity_id = "${oci_core_internet_gateway.oke_gateway.id}"
   }
@@ -186,57 +185,57 @@ resource "oci_core_security_list" "sl_lb" {
 
 resource "oci_core_subnet" "workers_ad1" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
-  cidr_block = "${var.cidr_subnet_workers_ad1}"
-  compartment_id = "${var.compartment_ocid}"
-  vcn_id = "${oci_core_vcn.oke_vcn.id}"
-
-  display_name = "${var.subnet_workers_ad1_name}"
-  security_list_ids = ["${oci_core_security_list.sl_workers.id}"]
-  route_table_id = "${oci_core_route_table.oke_routetable.id}"
+  cidr_block          = "${var.cidr_subnet_workers_ad1}"
+  compartment_id      = "${var.compartment_ocid}"
+  vcn_id              = "${oci_core_vcn.oke_vcn.id}"
+  display_name        = "${var.subnet_workers_ad1_name}"
+  security_list_ids   = ["${oci_core_security_list.sl_workers.id}"]
+  route_table_id      = "${oci_core_route_table.oke_routetable.id}"
+  dhcp_options_id     = "${oci_core_vcn.oke_vcn.default_dhcp_options_id}"
 }
 
 
 resource "oci_core_subnet" "workers_ad2" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
-  cidr_block = "${var.cidr_subnet_workers_ad2}"
-  compartment_id = "${var.compartment_ocid}"
-  vcn_id = "${oci_core_vcn.oke_vcn.id}"
-
-  display_name = "${var.subnet_workers_ad2_name}"
-  security_list_ids = ["${oci_core_security_list.sl_workers.id}"]
-  route_table_id = "${oci_core_route_table.oke_routetable.id}"
+  cidr_block          = "${var.cidr_subnet_workers_ad2}"
+  compartment_id      = "${var.compartment_ocid}"
+  vcn_id              = "${oci_core_vcn.oke_vcn.id}"
+  display_name        = "${var.subnet_workers_ad2_name}"
+  security_list_ids   = ["${oci_core_security_list.sl_workers.id}"]
+  route_table_id      = "${oci_core_route_table.oke_routetable.id}"
+  dhcp_options_id     = "${oci_core_vcn.oke_vcn.default_dhcp_options_id}"
 }
 
 resource "oci_core_subnet" "workers_ad3" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[2],"name")}"
-  cidr_block = "${var.cidr_subnet_workers_ad3}"
-  compartment_id = "${var.compartment_ocid}"
-  vcn_id = "${oci_core_vcn.oke_vcn.id}"
-
-  display_name = "${var.subnet_workers_ad3_name}"
-  security_list_ids = ["${oci_core_security_list.sl_workers.id}"]
-  route_table_id = "${oci_core_route_table.oke_routetable.id}"
+  cidr_block          = "${var.cidr_subnet_workers_ad3}"
+  compartment_id      = "${var.compartment_ocid}"
+  vcn_id              = "${oci_core_vcn.oke_vcn.id}"
+  display_name        = "${var.subnet_workers_ad3_name}"
+  security_list_ids   = ["${oci_core_security_list.sl_workers.id}"]
+  route_table_id      = "${oci_core_route_table.oke_routetable.id}"
+  dhcp_options_id     = "${oci_core_vcn.oke_vcn.default_dhcp_options_id}"
 }
 
 resource "oci_core_subnet" "loadbalancers_ad1" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
-  cidr_block = "${var.cidr_subnet_lb_ad1}"
-  compartment_id = "${var.compartment_ocid}"
-  vcn_id = "${oci_core_vcn.oke_vcn.id}"
-
-  display_name = "${var.subnet_lb_ad1_name}"
-  security_list_ids = ["${oci_core_security_list.sl_lb.id}"]
-  route_table_id = "${oci_core_route_table.oke_routetable.id}"
+  cidr_block          = "${var.cidr_subnet_lb_ad1}"
+  compartment_id      = "${var.compartment_ocid}"
+  vcn_id              = "${oci_core_vcn.oke_vcn.id}"
+  display_name        = "${var.subnet_lb_ad1_name}"
+  security_list_ids   = ["${oci_core_security_list.sl_lb.id}"]
+  route_table_id      = "${oci_core_route_table.oke_routetable.id}"
+  dhcp_options_id     = "${oci_core_vcn.oke_vcn.default_dhcp_options_id}"
 }
 
 resource "oci_core_subnet" "loadbalancers_ad2" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
-  cidr_block = "${var.cidr_subnet_lb_ad2}"
-  compartment_id = "${var.compartment_ocid}"
-  vcn_id = "${oci_core_vcn.oke_vcn.id}"
-
-  display_name = "${var.subnet_lb_ad2_name}"
-  security_list_ids = ["${oci_core_security_list.sl_lb.id}"]
-  route_table_id = "${oci_core_route_table.oke_routetable.id}"
+  cidr_block          = "${var.cidr_subnet_lb_ad2}"
+  compartment_id      = "${var.compartment_ocid}"
+  vcn_id              = "${oci_core_vcn.oke_vcn.id}"
+  display_name        = "${var.subnet_lb_ad2_name}"
+  security_list_ids   = ["${oci_core_security_list.sl_lb.id}"]
+  route_table_id      = "${oci_core_route_table.oke_routetable.id}"
+  dhcp_options_id     = "${oci_core_vcn.oke_vcn.default_dhcp_options_id}"
 }
 
