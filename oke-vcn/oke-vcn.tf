@@ -25,7 +25,7 @@ resource "oci_core_internet_gateway" "oke_gateway" {
 
 resource "oci_core_default_route_table" "default_routetable" {
   manage_default_resource_id = "${oci_core_vcn.oke_vcn.default_route_table_id}"
-  display_name               = "${var.dhcp_options_display_name}"
+  display_name               = "${var.rt_display_name}"
 
   route_rules {
     destination       = "0.0.0.0/0"
@@ -36,7 +36,7 @@ resource "oci_core_default_route_table" "default_routetable" {
 
 resource "oci_core_default_dhcp_options" "default_dhcp_options" {
   manage_default_resource_id = "${oci_core_vcn.oke_vcn.default_dhcp_options_id}"
-  display_name               = "${var.rt_display_name}"
+  display_name               = "${var.dhcp_options_display_name}"
 
   options {
     type = "DomainNameServer"
