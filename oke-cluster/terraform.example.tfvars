@@ -31,7 +31,7 @@
 #bastion_name = "bastion"
 #bastion_shape = "VM.Standard2.1"
 #bastion_ad = "1"
-#bastion_boot_vol_size = "46"
+#bastion_boot_vol_size = "60"
 
 #cluster_kubernetes_version = "v1.12.6"
 #cluster_name = "oke_cluster"

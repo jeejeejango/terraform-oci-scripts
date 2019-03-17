@@ -50,7 +50,7 @@ variable "bastion_ad" {
 }
 
 variable "bastion_boot_vol_size" {
-  default = "46"
+  default = "60"
 }
 
 variable "instance_image_ocid" {
