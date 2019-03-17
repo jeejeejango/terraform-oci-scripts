@@ -16,15 +16,24 @@
 ######################terr#########################################
 
 #vcn_name="vcn-oke"
+#private_subnet="true"
+
 #subnet_workers_ad1_name = "worker-1"
 #subnet_workers_ad2_name="worker-2"
 #subnet_workers_ad3_name="worker-3"
 #subnet_lb_ad1_name="loadbalancer-1"
 #subnet_lb_ad2_name="loadbalancer-2"
+#subnet_bastian_name="bastian"
 
+#bastian_ssh_public_key = ""
 #node_pool_ssh_public_key = ""
 
-#cluster_kubernetes_version = "v1.11.5"
+#bastian_name = "bastian"
+#bastian_shape = "VM.Standard2.1"
+#bastian_ad = "1"
+#bastian_boot_vol_size = "46"
+
+#cluster_kubernetes_version = "v1.12.6"
 #cluster_name = "oke_cluster"
 
 #availability_domain = "3"
@@ -36,7 +45,7 @@
 
 #node_pool_initial_node_labels_key = "key"
 #node_pool_initial_node_labels_value = "value"
-#node_pool_kubernetes_version = "v1.11.5"
+#node_pool_kubernetes_version = "v1.12.6"
 #node_pool_name = "oke_pool"
 #node_pool_node_image_name = "Oracle-Linux-7.5"
 #node_pool_node_shape = "VM.Standard1.1"
