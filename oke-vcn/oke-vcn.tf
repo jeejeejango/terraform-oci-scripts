@@ -121,11 +121,6 @@ resource "oci_core_security_list" "sl_private_workers" {
       source = "${var.cidr_subnet_workers_ad3}"
     },
     {
-      stateless = "true"
-      protocol = "all"
-      source = "${var.cidr_subnet_bastion}"
-    },
-    {
       protocol = "6"
       source = "${var.cidr_vcn}"
       tcp_options {
@@ -299,6 +294,21 @@ resource "oci_core_security_list" "sl_bastion" {
     }
   ]
   ingress_security_rules = [
+    {
+      stateless = "true"
+      protocol = "all"
+      source = "${var.cidr_subnet_workers_ad1}"
+    },
+    {
+      stateless = "true"
+      protocol = "all"
+      source = "${var.cidr_subnet_workers_ad2}"
+    },
+    {
+      stateless = "true"
+      protocol = "all"
+      source = "${var.cidr_subnet_workers_ad3}"
+    },
     {
       protocol = "1"
       source = "0.0.0.0/0"
