@@ -57,6 +57,7 @@
 
 ## DHCP Options
 #dhcp_options_display_name="oke-dhcp-options"
+#nat_display_name="oke-nat-gateway"
 
 ## Security Lists
 #sl_worker_name="workers"
