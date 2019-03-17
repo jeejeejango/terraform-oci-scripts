@@ -101,7 +101,7 @@ variable "subnet_lb_ad2_dns" {
   default = "loadbalancer2"
 }
 
-# Subnet Loadbalancers (lbrs)
+# Subnet bastian
 variable "subnet_bastian_dns" {
   default = "bastian"
 }
