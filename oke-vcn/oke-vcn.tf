@@ -23,9 +23,42 @@ resource "oci_core_internet_gateway" "oke_gateway" {
   vcn_id = "${oci_core_vcn.oke_vcn.id}"
 }
 
-resource "oci_core_default_route_table" "default_routetable" {
+resource "oci_core_nat_gateway" "worker_nat_gateway" {
+  #Required
+  compartment_id = "${var.compartment_ocid}"
+  vcn_id = "${oci_core_vcn.oke_vcn.id}"
+  display_name = "${var.nat_display_name}"
+  count = "${var.private_subnet == "true" ? 1 : 0}"
+}
+
+resource "oci_core_default_route_table" "lb_routetable" {
   manage_default_resource_id = "${oci_core_vcn.oke_vcn.default_route_table_id}"
-  display_name               = "${var.rt_display_name}"
+  display_name               = "${var.rt_lb_display_name}"
+
+  route_rules {
+    destination       = "0.0.0.0/0"
+    destination_type  = "CIDR_BLOCK"
+    network_entity_id = "${oci_core_internet_gateway.oke_gateway.id}"
+  }
+}
+
+resource "oci_core_route_table" "bastian_routetable" {
+  compartment_id = "${var.compartment_ocid}"
+  display_name   = "${var.rt_bastian_display_name}"
+  vcn_id         = "${oci_core_vcn.oke_vcn.id}"
+  count = "${var.private_subnet == "true" ? 1 : 0}"
+
+  route_rules {
+    destination       = "0.0.0.0/0"
+    destination_type  = "CIDR_BLOCK"
+    network_entity_id = "${oci_core_internet_gateway.oke_gateway.id}"
+  }
+}
+
+resource "oci_core_route_table" "worker_routetable" {
+  compartment_id = "${var.compartment_ocid}"
+  display_name   = "${var.rt_worker_display_name}"
+  vcn_id         = "${oci_core_vcn.oke_vcn.id}"
 
   route_rules {
     destination       = "0.0.0.0/0"
@@ -36,7 +69,7 @@ resource "oci_core_default_route_table" "default_routetable" {
 
 resource "oci_core_default_dhcp_options" "default_dhcp_options" {
   manage_default_resource_id = "${oci_core_vcn.oke_vcn.default_dhcp_options_id}"
-  display_name               = "${var.rt_display_name}"
+  display_name               = "${var.dhcp_options_display_name}"
 
   options {
     type = "DomainNameServer"
@@ -303,10 +336,11 @@ resource "oci_core_subnet" "workers_ad1" {
   compartment_id      = "${var.compartment_ocid}"
   vcn_id              = "${oci_core_vcn.oke_vcn.id}"
   display_name        = "${var.subnet_workers_ad1_name}"
-  security_list_ids   = ["${oci_core_security_list.sl_workers.id}"]
-  route_table_id      = "${oci_core_default_route_table.default_routetable.id}"
+  security_list_ids   = ["${var.private_subnet == "true" ? element(concat(oci_core_security_list.sl_private_workers.*.id, list("")), 0) : element(concat(oci_core_security_list.sl_public_workers.*.id, list("")), 0)}"]
+  route_table_id      = "${oci_core_route_table.worker_routetable.id}"
   dhcp_options_id     = "${oci_core_default_dhcp_options.default_dhcp_options.id}"
   dns_label           = "${var.subnet_workers_ad1_dns}"
+  prohibit_public_ip_on_vnic = "${var.private_subnet}"
 }
 
 
@@ -316,10 +350,11 @@ resource "oci_core_subnet" "workers_ad2" {
   compartment_id      = "${var.compartment_ocid}"
   vcn_id              = "${oci_core_vcn.oke_vcn.id}"
   display_name        = "${var.subnet_workers_ad2_name}"
-  security_list_ids   = ["${oci_core_security_list.sl_workers.id}"]
-  route_table_id      = "${oci_core_default_route_table.default_routetable.id}"
+  security_list_ids   = ["${var.private_subnet == "true" ? element(concat(oci_core_security_list.sl_private_workers.*.id, list("")), 0) : element(concat(oci_core_security_list.sl_public_workers.*.id, list("")), 0)}"]
+  route_table_id      = "${oci_core_route_table.worker_routetable.id}"
   dhcp_options_id     = "${oci_core_default_dhcp_options.default_dhcp_options.id}"
   dns_label           = "${var.subnet_workers_ad2_dns}"
+  prohibit_public_ip_on_vnic = "${var.private_subnet}"
 }
 
 resource "oci_core_subnet" "workers_ad3" {
@@ -328,10 +363,11 @@ resource "oci_core_subnet" "workers_ad3" {
   compartment_id      = "${var.compartment_ocid}"
   vcn_id              = "${oci_core_vcn.oke_vcn.id}"
   display_name        = "${var.subnet_workers_ad3_name}"
-  security_list_ids   = ["${oci_core_security_list.sl_workers.id}"]
-  route_table_id      = "${oci_core_default_route_table.default_routetable.id}"
+  security_list_ids   = ["${var.private_subnet == "true" ? element(concat(oci_core_security_list.sl_private_workers.*.id, list("")), 0) : element(concat(oci_core_security_list.sl_public_workers.*.id, list("")), 0)}"]
+  route_table_id      = "${oci_core_route_table.worker_routetable.id}"
   dhcp_options_id     = "${oci_core_default_dhcp_options.default_dhcp_options.id}"
   dns_label           = "${var.subnet_workers_ad3_dns}"
+  prohibit_public_ip_on_vnic = "${var.private_subnet}"
 }
 
 resource "oci_core_subnet" "loadbalancers_ad1" {
@@ -341,7 +377,7 @@ resource "oci_core_subnet" "loadbalancers_ad1" {
   vcn_id              = "${oci_core_vcn.oke_vcn.id}"
   display_name        = "${var.subnet_lb_ad1_name}"
   security_list_ids   = ["${oci_core_security_list.sl_lb.id}"]
-  route_table_id      = "${oci_core_default_route_table.default_routetable.id}"
+  route_table_id      = "${oci_core_default_route_table.lb_routetable.id}"
   dhcp_options_id     = "${oci_core_default_dhcp_options.default_dhcp_options.id}"
   dns_label           = "${var.subnet_lb_ad1_dns}"
 }
@@ -353,7 +389,7 @@ resource "oci_core_subnet" "loadbalancers_ad2" {
   vcn_id              = "${oci_core_vcn.oke_vcn.id}"
   display_name        = "${var.subnet_lb_ad2_name}"
   security_list_ids   = ["${oci_core_security_list.sl_lb.id}"]
-  route_table_id      = "${oci_core_default_route_table.default_routetable.id}"
+  route_table_id      = "${oci_core_default_route_table.lb_routetable.id}"
   dhcp_options_id     = "${oci_core_default_dhcp_options.default_dhcp_options.id}"
   dns_label           = "${var.subnet_lb_ad2_dns}"
 }

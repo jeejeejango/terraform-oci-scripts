@@ -11,6 +11,10 @@ variable "cidr_vcn" {
   default = "10.0.0.0/16"
 }
 
+variable "private_subnet" {
+  default = "true"
+}
+
 # CIDRs for worker subnets
 variable "cidr_subnet_workers_ad1" {
   default = "10.0.10.0/24"
@@ -37,12 +41,16 @@ variable "cidr_subnet_bastian" {
 
 # Internet Gateway
 variable "ig_name" {
-  default = "gateway-oke"
+  default = "oke-gateway"
 }
 
 # Route table
-variable "rt_display_name" {
-  default = "routetable-oke"
+variable "rt_lb_display_name" {
+  default = "oke-lb-routetable"
+}
+
+variable "rt_worker_display_name" {
+  default = "oke-worker-routetable"
 }
 
 variable "rt_bastian_display_name" {
@@ -51,7 +59,7 @@ variable "rt_bastian_display_name" {
 
 # DHCP options
 variable "dhcp_options_display_name" {
-  default = "dhcp-options-oke"
+  default = "oke-dhcp-options"
 }
 
 # NAT

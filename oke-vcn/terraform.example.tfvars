@@ -48,13 +48,15 @@
 
 
 ## Internet Gateway
-#ig_name="gateway-oke"
+#ig_name="oke-gateway"
 
 ## Route table
-#rt_display_name="routetable-oke"
+#rt_lb_display_name="oke-lb-routetable"
+#rt_worker_display_name="oke-worker-routetable"
+#rt_bastian_display_name="oke-bastian-routetable"
 
 ## DHCP Options
-#dhcp_options_display_name="dhcp-options-oke"
+#dhcp_options_display_name="oke-dhcp-options"
 
 ## Security Lists
 #sl_worker_name="workers"
