@@ -23,15 +23,15 @@
 #subnet_workers_ad3_name="worker-3"
 #subnet_lb_ad1_name="loadbalancer-1"
 #subnet_lb_ad2_name="loadbalancer-2"
-#subnet_bastian_name="bastian"
+#subnet_bastion_name="bastion"
 
-#bastian_ssh_public_key = ""
+#bastion_ssh_public_key = ""
 #node_pool_ssh_public_key = ""
 
-#bastian_name = "bastian"
-#bastian_shape = "VM.Standard2.1"
-#bastian_ad = "1"
-#bastian_boot_vol_size = "46"
+#bastion_name = "bastion"
+#bastion_shape = "VM.Standard2.1"
+#bastion_ad = "1"
+#bastion_boot_vol_size = "46"
 
 #cluster_kubernetes_version = "v1.12.6"
 #cluster_name = "oke_cluster"

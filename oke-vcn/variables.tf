@@ -34,8 +34,8 @@ variable "cidr_subnet_lb_ad2" {
   default = "10.0.21.0/24"
 }
 
-# CIDRs for Bastian subnet
-variable "cidr_subnet_bastian" {
+# CIDRs for bastion subnet
+variable "cidr_subnet_bastion" {
   default = "10.0.31.0/24"
 }
 
@@ -53,8 +53,8 @@ variable "rt_worker_display_name" {
   default = "oke-worker-routetable"
 }
 
-variable "rt_bastian_display_name" {
-  default = "oke-bastian-routetable"
+variable "rt_bastion_display_name" {
+  default = "oke-bastion-routetable"
 }
 
 # DHCP options
@@ -101,12 +101,12 @@ variable "subnet_lb_ad2_dns" {
   default = "loadbalancer2"
 }
 
-# Subnet bastian
-variable "subnet_bastian_dns" {
-  default = "bastian"
+# Subnet bastion
+variable "subnet_bastion_dns" {
+  default = "bastion"
 }
-variable "subnet_bastian_name" {
-  default = "bastian"
+variable "subnet_bastion_name" {
+  default = "bastion"
 }
 
 # Security List names
@@ -116,8 +116,8 @@ variable "sl_worker_name" {
 variable "sl_lb_name" {
   default = "loaderbalancers"
 }
-variable "sl_bastian_name" {
-  default = "bastian"
+variable "sl_bastion_name" {
+  default = "bastion"
 }
 
 

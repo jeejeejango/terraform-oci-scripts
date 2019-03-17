@@ -41,10 +41,10 @@
 #cidr_subnet_lb_ad1="10.0.20.0/24"
 #cidr_subnet_lb_ad2="10.0.21.0/24"
 
-## Subnet Bastian
-#subnet_bastian_name="bastian"
-#subnet_bastian_dns="bastian"
-#cidr_subnet_bastian="10.0.31.0/24"
+## Subnet bastion
+#subnet_bastion_name="bastion"
+#subnet_bastion_dns="bastion"
+#cidr_subnet_bastion="10.0.31.0/24"
 
 
 ## Internet Gateway
@@ -53,7 +53,7 @@
 ## Route table
 #rt_lb_display_name="oke-lb-routetable"
 #rt_worker_display_name="oke-worker-routetable"
-#rt_bastian_display_name="oke-bastian-routetable"
+#rt_bastion_display_name="oke-bastion-routetable"
 
 ## DHCP Options
 #dhcp_options_display_name="oke-dhcp-options"
@@ -62,7 +62,7 @@
 ## Security Lists
 #sl_worker_name="workers"
 #sl_lb_name="loaderbalancers"
-#sl_bastian_name="bastian"
+#sl_bastion_name="bastion"
 
 
 # Security List ICMP options

@@ -42,9 +42,9 @@ resource "oci_core_default_route_table" "lb_routetable" {
   }
 }
 
-resource "oci_core_route_table" "bastian_routetable" {
+resource "oci_core_route_table" "bastion_routetable" {
   compartment_id = "${var.compartment_ocid}"
-  display_name   = "${var.rt_bastian_display_name}"
+  display_name   = "${var.rt_bastion_display_name}"
   vcn_id         = "${oci_core_vcn.oke_vcn.id}"
   count = "${var.private_subnet == "true" ? 1 : 0}"
 
@@ -119,6 +119,11 @@ resource "oci_core_security_list" "sl_private_workers" {
       stateless = "true"
       protocol = "all"
       source = "${var.cidr_subnet_workers_ad3}"
+    },
+    {
+      stateless = "true"
+      protocol = "all"
+      source = "${var.cidr_subnet_bastion}"
     },
     {
       protocol = "6"
@@ -280,9 +285,9 @@ resource "oci_core_security_list" "sl_lb" {
   ]
 }
 
-resource "oci_core_security_list" "sl_bastian" {
+resource "oci_core_security_list" "sl_bastion" {
   compartment_id = "${var.compartment_ocid}"
-  display_name = "${var.sl_bastian_name}"
+  display_name = "${var.sl_bastion_name}"
   vcn_id = "${oci_core_vcn.oke_vcn.id}"
   count = "${var.private_subnet == "true" ? 1 : 0}"
 
@@ -316,15 +321,16 @@ resource "oci_core_security_list" "sl_bastian" {
   ]
 }
 
-resource "oci_core_subnet" "bastian_ad" {
-  cidr_block          = "${var.cidr_subnet_bastian}"
+resource "oci_core_subnet" "bastion_ad" {
+  //availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
+  cidr_block          = "${var.cidr_subnet_bastion}"
   compartment_id      = "${var.compartment_ocid}"
   vcn_id              = "${oci_core_vcn.oke_vcn.id}"
-  display_name        = "${var.subnet_bastian_name}"
-  security_list_ids   = ["${oci_core_security_list.sl_bastian.id}"]
-  route_table_id      = "${oci_core_route_table.bastian_routetable.id}"
+  display_name        = "${var.subnet_bastion_name}"
+  security_list_ids   = ["${oci_core_security_list.sl_bastion.id}"]
+  route_table_id      = "${oci_core_route_table.bastion_routetable.id}"
   dhcp_options_id     = "${oci_core_default_dhcp_options.default_dhcp_options.id}"
-  dns_label           = "${var.subnet_bastian_dns}"
+  dns_label           = "${var.subnet_bastion_dns}"
 
   count = "${var.private_subnet == "true" ? 1 : 0}"
 

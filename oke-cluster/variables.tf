@@ -30,26 +30,26 @@ variable "subnet_lb_ad2_name" {
 }
 
 # Subnet bastisan
-variable "subnet_bastian_name" {
-  default = "bastian"
+variable "subnet_bastion_name" {
+  default = "bastion"
 }
 
-# bastian config
-variable "bastian_ssh_public_key" {}
+# bastion config
+variable "bastion_ssh_public_key" {}
 
-variable "bastian_name" {
-  default = "bastian"
+variable "bastion_name" {
+  default = "bastion"
 }
 
-variable "bastian_shape" {
+variable "bastion_shape" {
   default = "VM.Standard2.1"
 }
 
-variable "bastian_ad" {
+variable "bastion_ad" {
   default = "1"
 }
 
-variable "bastian_boot_vol_size" {
+variable "bastion_boot_vol_size" {
   default = "46"
 }
 
