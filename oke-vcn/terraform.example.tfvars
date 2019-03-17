@@ -19,6 +19,7 @@
 #vcn_name="vcn-oke"
 #cidr_vcn="10.0.0.0/16"
 #vcn_dns_label="oke"
+#private_subnet="true"
 
 ## Subnet workers
 #subnet_workers_ad1_name="worker-1"
@@ -40,6 +41,11 @@
 #cidr_subnet_lb_ad1="10.0.20.0/24"
 #cidr_subnet_lb_ad2="10.0.21.0/24"
 
+## Subnet Bastian
+#subnet_bastian_name="bastian"
+#subnet_bastian_dns="bastian"
+#cidr_subnet_bastian="10.0.31.0/24"
+
 
 ## Internet Gateway
 #ig_name="gateway-oke"
@@ -51,9 +57,9 @@
 #dhcp_options_display_name="dhcp-options-oke"
 
 ## Security Lists
-# sl_worker_name="workers"
-# sl_lb_name="loaderbalancers"
-
+#sl_worker_name="workers"
+#sl_lb_name="loaderbalancers"
+#sl_bastian_name="bastian"
 
 
 # Security List ICMP options

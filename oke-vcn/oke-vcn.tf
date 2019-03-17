@@ -30,7 +30,7 @@ resource "oci_core_default_route_table" "default_routetable" {
   route_rules {
     destination       = "0.0.0.0/0"
     destination_type  = "CIDR_BLOCK"
-    network_entity_id = "${oci_core_internet_gateway.oke_gateway.id}"
+    network_entity_id = "${var.private_subnet == "true" ? oci_core_nat_gateway.worker_nat_gateway.id : oci_core_internet_gateway.oke_gateway.id}"
   }
 }
 
@@ -44,10 +44,65 @@ resource "oci_core_default_dhcp_options" "default_dhcp_options" {
   }
 }
 
-resource "oci_core_security_list" "sl_workers" {
+resource "oci_core_security_list" "sl_private_workers" {
   compartment_id = "${var.compartment_ocid}"
   display_name = "${var.sl_worker_name}"
   vcn_id = "${oci_core_vcn.oke_vcn.id}"
+  count = "${var.private_subnet == "true" ? 1 : 0}"
+
+  egress_security_rules = [
+    {
+      stateless = "true"
+      protocol = "all"
+      destination = "${var.cidr_subnet_workers_ad1}"
+    },
+    {
+      stateless = "true"
+      protocol = "all"
+      destination = "${var.cidr_subnet_workers_ad2}"
+    },
+    {
+      stateless = "true"
+      protocol = "all"
+      destination = "${var.cidr_subnet_workers_ad3}"
+    },
+    {
+      protocol = "all"
+      destination = "0.0.0.0/0"
+    }
+  ]
+  ingress_security_rules = [
+    {
+      stateless = "true"
+      protocol = "all"
+      source = "${var.cidr_subnet_workers_ad1}"
+    },
+    {
+      stateless = "true"
+      protocol = "all"
+      source = "${var.cidr_subnet_workers_ad2}"
+    },
+    {
+      stateless = "true"
+      protocol = "all"
+      source = "${var.cidr_subnet_workers_ad3}"
+    },
+    {
+      protocol = "6"
+      source = "${var.cidr_vcn}"
+      tcp_options {
+        "max" = 22
+        "min" = 22
+      }
+    }
+  ]
+}
+
+resource "oci_core_security_list" "sl_public_workers" {
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "${var.sl_worker_name}"
+  vcn_id = "${oci_core_vcn.oke_vcn.id}"
+  count = "${var.private_subnet == "true" ? 0 : 1}"
 
   egress_security_rules = [
     {
@@ -192,6 +247,55 @@ resource "oci_core_security_list" "sl_lb" {
   ]
 }
 
+resource "oci_core_security_list" "sl_bastian" {
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "${var.sl_bastian_name}"
+  vcn_id = "${oci_core_vcn.oke_vcn.id}"
+  count = "${var.private_subnet == "true" ? 1 : 0}"
+
+  egress_security_rules = [
+    {
+      stateless = "true"
+      destination = "0.0.0.0/0"
+      protocol = "6"
+    }
+  ]
+  ingress_security_rules = [
+    {
+      protocol = "1"
+      source = "0.0.0.0/0"
+      icmp_options {
+        #Required
+        type = "${var.sl_ingress_icmp_options_type}"
+
+        #Optional
+        code = "${var.sl_ingress_icmp_options_code}"
+      }
+    },
+    {
+      protocol = "6"
+      source = "0.0.0.0/0"
+      tcp_options {
+        "max" = 22
+        "min" = 22
+      }
+    }
+  ]
+}
+
+resource "oci_core_subnet" "bastian_ad" {
+  cidr_block          = "${var.cidr_subnet_bastian}"
+  compartment_id      = "${var.compartment_ocid}"
+  vcn_id              = "${oci_core_vcn.oke_vcn.id}"
+  display_name        = "${var.subnet_bastian_name}"
+  security_list_ids   = ["${oci_core_security_list.sl_bastian.id}"]
+  route_table_id      = "${oci_core_route_table.bastian_routetable.id}"
+  dhcp_options_id     = "${oci_core_default_dhcp_options.default_dhcp_options.id}"
+  dns_label           = "${var.subnet_bastian_dns}"
+
+  count = "${var.private_subnet == "true" ? 1 : 0}"
+
+}
 
 resource "oci_core_subnet" "workers_ad1" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"

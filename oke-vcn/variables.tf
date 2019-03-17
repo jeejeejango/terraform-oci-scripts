@@ -30,6 +30,11 @@ variable "cidr_subnet_lb_ad2" {
   default = "10.0.21.0/24"
 }
 
+# CIDRs for Bastian subnet
+variable "cidr_subnet_bastian" {
+  default = "10.0.31.0/24"
+}
+
 # Internet Gateway
 variable "ig_name" {
   default = "gateway-oke"
@@ -40,9 +45,18 @@ variable "rt_display_name" {
   default = "routetable-oke"
 }
 
+variable "rt_bastian_display_name" {
+  default = "oke-bastian-routetable"
+}
+
 # DHCP options
 variable "dhcp_options_display_name" {
   default = "dhcp-options-oke"
+}
+
+# NAT
+variable "nat_display_name" {
+  default = "oke-nat-gateway"
 }
 
 # Subnet workers
@@ -79,12 +93,23 @@ variable "subnet_lb_ad2_dns" {
   default = "loadbalancer2"
 }
 
+# Subnet Loadbalancers (lbrs)
+variable "subnet_bastian_dns" {
+  default = "bastian"
+}
+variable "subnet_bastian_name" {
+  default = "bastian"
+}
+
 # Security List names
 variable "sl_worker_name" {
   default = "workers"
 }
 variable "sl_lb_name" {
   default = "loaderbalancers"
+}
+variable "sl_bastian_name" {
+  default = "bastian"
 }
 
 
