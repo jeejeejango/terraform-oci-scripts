@@ -127,6 +127,39 @@ resource "oci_core_security_list" "sl_private_workers" {
         "max" = 22
         "min" = 22
       }
+    },
+    // for oci fss
+    {
+      protocol = "6"
+      source = "${var.cidr_vcn}"
+      tcp_options {
+        "max" = 2050
+        "min" = 2048
+      }
+    },
+    {
+      protocol = "6"
+      source = "${var.cidr_vcn}"
+      tcp_options {
+        "max" = 111
+        "min" = 111
+      }
+    },
+    {
+      protocol = "17"
+      source = "${var.cidr_vcn}"
+      udp_options {
+        "max" = 2048
+        "min" = 2048
+      }
+    },
+    {
+      protocol = "17"
+      source = "${var.cidr_vcn}"
+      udp_options {
+        "max" = 111
+        "min" = 111
+      }
     }
   ]
 }
